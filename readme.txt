@@ -33,3 +33,5 @@ Just type following command in the terminal,
 * give edges information in the format (a b) it will denote that there is edge between a and b.
 
 In all three cases you will get all possible maximal cliques in the graph G.
+
+Use run_testcase.cpp to run a testcase for all the three algorithms and to compare their running times.
