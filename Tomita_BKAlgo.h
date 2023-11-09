@@ -16,8 +16,9 @@ Tomita Bron Kerbosch Algorithm for finding all maximal cliques in a graph.
 using namespace std;
 
 // Tomita Bron-Kerbosch Algorithm
-void tomitaBKAlgo(vector<vector<int>> &adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques)
+void tomitaBKAlgo(vector<vector<int>> &adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques, int &count)
 {
+    count++;
     if (P.empty() && X.empty())
     {
         cliques.insert(R); // adding R(maximal clique) in cliques.
@@ -26,7 +27,7 @@ void tomitaBKAlgo(vector<vector<int>> &adj, set<int> &R, set<int> &P, set<int> &
 
     set<int> pux; // P U X;
     set_union(P.begin(), P.end(), X.begin(), X.end(), inserter(pux, pux.begin()));
-    int mx = -1, u; // mx is just a util var to store max neighbourhood and u is basically our pivot node.
+    int mx = -1, u; // mx is just a util var to store max neighbourhood and u is the pivot node.
 
     for (auto it : pux)
     {
@@ -54,7 +55,7 @@ void tomitaBKAlgo(vector<vector<int>> &adj, set<int> &R, set<int> &P, set<int> &
         set_intersection(pCopy.begin(), pCopy.end(), nV.begin(), nV.end(), inserter(newP, newP.begin())); // P intersection N(v)
         set_intersection(X.begin(), X.end(), nV.begin(), nV.end(), inserter(newX, newX.begin()));         // X intersection N(v)
 
-        tomitaBKAlgo(adj, rCopy, newP, newX, cliques); // Recursive call for the function.
+        tomitaBKAlgo(adj, rCopy, newP, newX, cliques, count); // Recursive call for the function.
 
         // Backtracking
         P.erase(v);  // P \ {v}

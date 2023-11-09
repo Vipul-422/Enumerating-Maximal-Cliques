@@ -11,8 +11,10 @@
 using namespace std;
 
 // Classical Bron-Kerbosch Algorithm
-void bronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques)
+void bronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques, int &count)
 {
+    count++;
+
     if (P.empty() && X.empty())
     {
         cliques.insert(R);
@@ -29,7 +31,7 @@ void bronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, set<int
         set_intersection(pCopy.begin(), pCopy.end(), nV.begin(), nV.end(), inserter(newP, newP.begin()));
         set_intersection(X.begin(), X.end(), nV.begin(), nV.end(), inserter(newX, newX.begin()));
 
-        bronKerboschAlgo(adj, rCopy, newP, newX, cliques); // Recursive call for the function
+        bronKerboschAlgo(adj, rCopy, newP, newX, cliques,count); // Recursive call for the function
 
         // Backtracking
         P.erase(v);  // P \ {v}

@@ -1,0 +1,55 @@
+Enter the number of nodes in the graph: Enter the number of edges in the graph: 
+Enter the edges in the format (a b)
+
+(a b) : undirected edge between a and b
+
+Constraints:
+0 <= a <= 10
+0 <= b <= 10
+
+Basic Bron Kerbosch:
+Total number of max cliques = 8
+0 1 3 
+0 3 5 
+1 3 4 
+1 3 6 
+2 3 5 
+3 5 6 
+4 7 
+7 8 9 10 
+
+Bron Kerbosch with Pivot:
+Total number of max cliques = 8
+0 1 3 
+0 3 5 
+1 3 4 
+1 3 6 
+2 3 5 
+3 5 6 
+4 7 
+7 8 9 10 
+
+Tomita:
+Total number of max cliques = 8
+0 1 3 
+0 3 5 
+1 3 4 
+1 3 6 
+2 3 5 
+3 5 6 
+4 7 
+7 8 9 10 
+
+Comparison:
+Basic Bron Kerbosch:
+Time: 15674000 nanoseconds
+Recursive calls: 134
+
+Bron Kerbosch with Pivot:
+Time: 3062000 nanoseconds
+Recursive calls: 134
+
+Tomita:
+Time: 0 nanoseconds
+Recursive calls: 29
+

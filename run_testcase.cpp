@@ -16,8 +16,13 @@ set<set<int>> cliques_1, cliques_2, cliques_3; // It will store all the maximal 
 
 int main()
 {
+
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
     // Variables declaration
     int V, E;
+    int count_1 = 0, count_2 = 0, count_3 = 0;
     set<int> R_1, P_1, X_1;
     set<int> R_2, P_2, X_2;
     set<int> R_3, P_3, X_3;
@@ -34,17 +39,17 @@ int main()
 
     // Classical Bron-Kerbosch Algorithm
     auto start_1 = chrono::high_resolution_clock ::now();
-    bronKerboschAlgo(adj, R_1, P_1, X_1, cliques_1);
+    bronKerboschAlgo(adj, R_1, P_1, X_1, cliques_1, count_1);
     auto end_1 = chrono::high_resolution_clock ::now();
     auto duration_1 = chrono::duration_cast<chrono::nanoseconds>(end_1 - start_1).count();
 
     auto start_2 = chrono::high_resolution_clock ::now();
-    pivotBronKerboschAlgo(adj, R_2, P_2, X_2, cliques_2);
+    pivotBronKerboschAlgo(adj, R_2, P_2, X_2, cliques_2, count_2);
     auto end_2 = chrono::high_resolution_clock ::now();
     auto duration_2 = chrono::duration_cast<chrono::nanoseconds>(end_2 - start_2).count();
 
     auto start_3 = chrono::high_resolution_clock ::now();
-    tomitaBKAlgo(adj, R_3, P_3, X_3, cliques_3);
+    tomitaBKAlgo(adj, R_3, P_3, X_3, cliques_3, count_3);
     auto end_3 = chrono::high_resolution_clock ::now();
     auto duration_3 = chrono::duration_cast<chrono::nanoseconds>(end_3 - start_3).count();
 
@@ -60,9 +65,20 @@ int main()
     print(cliques_3);
     cout << endl;
 
-    cout << "Execution time:\n";
-    cout << "Basic Bron Kerbosch " << duration_1 << endl
-         << "Bron Kerbosch with Pivot: " << duration_2 << endl
-         << "Tomita: " << duration_3 << endl;
+    cout << "Comparison:\n";
+    cout << "Basic Bron Kerbosch:\n"
+         << "Time: " << duration_1 << " nanoseconds" << endl
+         << "Recursive calls: " << count_1 << endl
+         << endl
+
+         << "Bron Kerbosch with Pivot:\n"
+         << "Time: " << duration_2 << " nanoseconds" << endl
+         << "Recursive calls: " << count_2 << endl
+         << endl
+
+         << "Tomita:\n"
+         << "Time: " << duration_3 << " nanoseconds" << endl
+         << "Recursive calls: " << count_3 << endl
+         << endl;
     return 0;
 }

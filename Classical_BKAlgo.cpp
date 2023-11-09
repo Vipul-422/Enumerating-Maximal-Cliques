@@ -16,6 +16,7 @@ int main()
     // Variables declaration
     int V, E;
     set<int> R, P, X;
+    int count=0;
 
     vector<vector<int>> adj;
 
@@ -25,7 +26,7 @@ int main()
     // Calling Function to get total number of maximal cliques in cliques vector.
 
     // Classical Bron-Kerbosch Algorithm
-    bronKerboschAlgo(adj, R, P, X, cliques);
+    bronKerboschAlgo(adj, R, P, X, cliques,count);
 
     print(cliques);
     return 0;

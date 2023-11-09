@@ -16,21 +16,23 @@ Header file for Bron Kerbosch Algorithm with Pivot for finding all maximal cliqu
 using namespace std;
 
 // Pivot Bron-Kerbosch Algorithm
-void pivotBronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques)
+void pivotBronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques, int &count)
 {
+    count++;
+
     if (P.empty() && X.empty())
     {
         cliques.insert(R);
         return;
     }
 
-    set<int> pux; // P U X;
-    set_union(P.begin(), P.end(), X.begin(), X.end(), inserter(pux, pux.begin()));
+    set<int> pux;                                                                  // P U X;
+    set_union(P.begin(), P.end(), X.begin(), X.end(), inserter(pux, pux.begin())); // Calculating P U X
 
     int idx = rand() % pux.size();
     auto it = pux.begin();
-    for (int i = 0; i < idx; i++)
-        it++;
+    // for (int i = 0; i < idx; i++)
+    //     it++;
 
     int u = *it; // u is pivot here it is random element in P U X;
 
@@ -49,7 +51,7 @@ void pivotBronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, se
         set_intersection(pCopy.begin(), pCopy.end(), nV.begin(), nV.end(), inserter(newP, newP.begin())); // P intersection N(v)
         set_intersection(X.begin(), X.end(), nV.begin(), nV.end(), inserter(newX, newX.begin()));         // X intersection N(v)
 
-        pivotBronKerboschAlgo(adj, rCopy, newP, newX, cliques); // Recursive call for the function
+        pivotBronKerboschAlgo(adj, rCopy, newP, newX, cliques, count); // Recursive call for the function
 
         // Backtracking
         P.erase(v);  // P \ {v}
