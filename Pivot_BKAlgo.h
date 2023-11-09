@@ -15,6 +15,12 @@ Header file for Bron Kerbosch Algorithm with Pivot for finding all maximal cliqu
 
 using namespace std;
 
+void printset1(set<int> temp) {
+    for(auto it : temp) cout<<it<<" ";
+    cout<<"\n";
+}
+
+
 // Pivot Bron-Kerbosch Algorithm
 void pivotBronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques, int &count)
 {
@@ -29,16 +35,17 @@ void pivotBronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, se
     set<int> pux;                                                                  // P U X;
     set_union(P.begin(), P.end(), X.begin(), X.end(), inserter(pux, pux.begin())); // Calculating P U X
 
-    int idx = rand() % pux.size();
-    auto it = pux.begin();
-    // for (int i = 0; i < idx; i++)
-    //     it++;
-
-    int u = *it; // u is pivot here it is random element in P U X;
-
-    set<int> nU(adj[u].begin(), adj[u].begin());                                              // N(u) contains all the neighbors of pivot u.
+    int idx = pux.size() / 2;
+    auto it = pux.rbegin();
+    for (int i = 0; i < idx; i++)
+        it++;
+    int pivot = *(it);
+    set<int> nPivot;                                                                           // N(u) contains all the neighbors of pivot u.
+    for(auto it : adj[pivot]) {
+        nPivot.insert(it);
+    }
     set<int> pCopy = P, tempP;                                                                // tempP contain P \ N(u) and pCopy is just a copy of P set.
-    set_difference(P.begin(), P.end(), nU.begin(), nU.end(), inserter(tempP, tempP.begin())); // storing P \ N(u) in tempP
+    set_difference(P.begin(), P.end(), nPivot.begin(), nPivot.end(), inserter(tempP, tempP.begin())); // storing P \ N(u) in tempP
 
     for (int v : tempP)
     {

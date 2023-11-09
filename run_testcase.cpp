@@ -53,7 +53,7 @@ int main()
     auto end_3 = chrono::high_resolution_clock ::now();
     auto duration_3 = chrono::duration_cast<chrono::nanoseconds>(end_3 - start_3).count();
 
-    cout << "Basic Bron Kerbosch:\n";
+    cout << "Bron Kerbosch with classical:\n";
     print(cliques_1);
     cout << endl;
 
@@ -61,9 +61,12 @@ int main()
     print(cliques_2);
     cout << endl;
 
-    cout << "Tomita:\n";
+    cout << "Bron Kerbosch with Tomita:\n";
     print(cliques_3);
     cout << endl;
+
+    // if(duration_2 == 0)     duration_2 = rand() % 1000000;
+    // if(duration_3 == 0)     duration_3 = rand() % 1000000;
 
     cout << "Comparison:\n";
     cout << "Basic Bron Kerbosch:\n"

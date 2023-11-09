@@ -10,6 +10,11 @@
 
 using namespace std;
 
+void printset(set<int> temp) {
+    for(auto it : temp) cout<<it<<" ";
+    cout<<"\n";
+}
+
 // Classical Bron-Kerbosch Algorithm
 void bronKerboschAlgo(vector<vector<int>> adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques, int &count)
 {

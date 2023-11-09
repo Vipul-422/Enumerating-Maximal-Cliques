@@ -15,10 +15,16 @@ Tomita Bron Kerbosch Algorithm for finding all maximal cliques in a graph.
 
 using namespace std;
 
+void printset2(set<int> temp) {
+    for(auto it : temp) cout<<it<<" ";
+    cout<<"\n";
+}
+
 // Tomita Bron-Kerbosch Algorithm
 void tomitaBKAlgo(vector<vector<int>> &adj, set<int> &R, set<int> &P, set<int> &X, set<set<int>> &cliques, int &count)
 {
     count++;
+    
     if (P.empty() && X.empty())
     {
         cliques.insert(R); // adding R(maximal clique) in cliques.
